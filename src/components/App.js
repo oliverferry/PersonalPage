@@ -1,15 +1,38 @@
 import React from 'react'
-import MessageInput from './MessageInput'
-import CommentWrapper from './CommentWrapper'
-import ParentThread from './ParentThread'
-import './App.css'
+import '../styles/App.css'
 import { Container } from '@material-ui/core'
+import FixedPosition from './TopBar'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import PostList from './PostList'
+
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#2196f3',
+    },
+    secondary: {
+      main: '#f50057',
+    },
+  }, typography: {
+    fontFamily: [
+      'Nunito',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif'
+    ].join(','),
+  }
+});
 
 const App = () => (
   <div className='app'>
-    <Container maxWidth="md">
-      <ParentThread/>
+    <MuiThemeProvider theme={theme}>
+      <FixedPosition />
+      <Container maxWidth="sm">
+        <PostList/>
     </Container>
+    </MuiThemeProvider>
   </div>
 
 )
